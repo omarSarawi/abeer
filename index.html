@@ -1,0 +1,3307 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3asal | Smart Car Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink-900: #111827;
+        --ink-800: #1f2937;
+        --ink-700: #374151;
+        --ink-600: #4b5563;
+        --ink-500: #6b7280;
+        --paper: #fbfaf7;
+        --panel: #ffffff;
+        --line: #e5e7eb;
+        --teal: #0f766e;
+        --teal-soft: #d9f4ee;
+        --amber: #f59e0b;
+        --amber-soft: #fff3d6;
+        --rose: #e11d48;
+        --rose-soft: #ffe4ea;
+        --blue: #2563eb;
+        --blue-soft: #dceafe;
+        --violet: #7c3aed;
+        --green: #16a34a;
+        --coral: #ea580c;
+        --coral-soft: #ffedd5;
+        --violet-soft: #ede9fe;
+        --shadow: 0 20px 60px rgba(17, 24, 39, 0.1);
+        --shadow-soft: 0 12px 34px rgba(17, 24, 39, 0.08);
+        --radius: 8px;
+        --font:
+          "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        --section-pad: 96px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(90deg, rgba(17, 24, 39, 0.035) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(17, 24, 39, 0.035) 1px, transparent 1px),
+          var(--paper);
+        background-size: 44px 44px;
+        color: var(--ink-800);
+        font-family: var(--font);
+        line-height: 1.75;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .deck-shell {
+        position: relative;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+        background: rgba(251, 250, 247, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        min-height: 72px;
+      }
+
+      .brand-lockup {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: max-content;
+      }
+
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: var(--radius);
+        background: var(--ink-900);
+        color: #ffffff;
+        font-size: 1.35rem;
+        font-weight: 900;
+        line-height: 1;
+        box-shadow: 0 10px 24px rgba(17, 24, 39, 0.2);
+      }
+
+      .brand-text {
+        display: grid;
+        gap: 0;
+      }
+
+      .brand-text strong {
+        color: var(--ink-900);
+        font-size: 1rem;
+        line-height: 1.1;
+      }
+
+      .brand-text span {
+        color: var(--ink-500);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .nav-pills {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 10px 0;
+        scrollbar-width: none;
+      }
+
+      .nav-pills::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-pills a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 36px;
+        padding: 0 14px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        color: var(--ink-600);
+        font-size: 0.86rem;
+        font-weight: 800;
+        white-space: nowrap;
+        transition:
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .nav-pills a:hover,
+      .nav-pills a.active {
+        border-color: rgba(15, 118, 110, 0.24);
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+
+      .progress-track {
+        position: absolute;
+        inset-inline: 0;
+        bottom: -1px;
+        height: 3px;
+        background: transparent;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--teal),
+          var(--amber),
+          var(--rose)
+        );
+        transition: width 120ms linear;
+      }
+
+      .section {
+        position: relative;
+        display: grid;
+        align-items: center;
+        min-height: 88svh;
+        padding: var(--section-pad) 0;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+        overflow: hidden;
+      }
+
+      .section.alt {
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section-heading {
+        display: grid;
+        gap: 12px;
+        max-width: 780px;
+        margin-bottom: 38px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        width: max-content;
+        min-height: 32px;
+        padding: 0 12px;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--teal);
+        font-size: 0.78rem;
+        font-weight: 900;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: var(--ink-900);
+        line-height: 1.18;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        font-size: 5.6rem;
+        font-weight: 900;
+      }
+
+      h2 {
+        font-size: 2.45rem;
+        font-weight: 900;
+      }
+
+      h3 {
+        font-size: 1.18rem;
+        font-weight: 900;
+      }
+
+      .lead {
+        color: var(--ink-600);
+        font-size: 1.12rem;
+        font-weight: 600;
+      }
+
+      .hero {
+        min-height: 82svh;
+        padding-top: 72px;
+        background:
+          radial-gradient(
+            circle at 18% 12%,
+            rgba(245, 158, 11, 0.14),
+            transparent 34%
+          ),
+          linear-gradient(135deg, #f9fafb 0%, #edf7f4 42%, #fff7e6 100%);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 168px;
+        background:
+          linear-gradient(
+            135deg,
+            transparent 48%,
+            rgba(17, 24, 39, 0.08) 48%,
+            rgba(17, 24, 39, 0.08) 52%,
+            transparent 52%
+          ),
+          linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(17, 24, 39, 0.06) 48%,
+            rgba(17, 24, 39, 0.06) 52%,
+            transparent 52%
+          );
+        background-size: 54px 54px;
+        mask-image: linear-gradient(to top, black, transparent);
+        pointer-events: none;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(430px, 1.15fr);
+        align-items: center;
+        gap: 54px;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        gap: 26px;
+      }
+
+      .hero-title-wrap {
+        display: grid;
+        gap: 14px;
+      }
+
+      .hero-title-wrap h1 {
+        font-size: 6rem;
+      }
+
+      .hero-subtitle {
+        max-width: 650px;
+        color: var(--ink-700);
+        font-size: 1.44rem;
+        font-weight: 800;
+        line-height: 1.65;
+      }
+
+      .student-strip {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: max-content;
+        max-width: 100%;
+        padding: 12px 16px;
+        border: 1px solid rgba(15, 118, 110, 0.18);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.68);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .student-strip .label {
+        color: var(--ink-500);
+        font-weight: 800;
+      }
+
+      .student-strip .name {
+        color: var(--teal);
+        font-size: 1.28rem;
+        font-weight: 900;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border-radius: var(--radius);
+        border: 1px solid var(--ink-900);
+        background: var(--ink-900);
+        color: #ffffff;
+        font-weight: 900;
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          background 180ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(17, 24, 39, 0.18);
+      }
+
+      .button.secondary {
+        border-color: rgba(17, 24, 39, 0.14);
+        background: rgba(255, 255, 255, 0.68);
+        color: var(--ink-900);
+      }
+
+      .hero-stage {
+        position: relative;
+        z-index: 1;
+        min-height: 540px;
+        isolation: isolate;
+      }
+
+      .bluetooth-rings {
+        position: absolute;
+        inset: 16px 4% auto auto;
+        width: 210px;
+        height: 210px;
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        border-radius: 50%;
+        animation: pulseRing 4.5s ease-in-out infinite;
+      }
+
+      .bluetooth-rings::before,
+      .bluetooth-rings::after {
+        content: "";
+        position: absolute;
+        inset: 34px;
+        border: 1px solid rgba(37, 99, 235, 0.22);
+        border-radius: 50%;
+      }
+
+      .bluetooth-rings::after {
+        inset: 68px;
+        border-color: rgba(37, 99, 235, 0.32);
+      }
+
+      .board-visual {
+        position: absolute;
+        top: 32px;
+        left: 20px;
+        width: 260px;
+        padding: 18px;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: var(--radius);
+        background: #123f3b;
+        box-shadow: var(--shadow);
+        transform: rotate(-3deg);
+      }
+
+      .board-chip {
+        display: grid;
+        place-items: center;
+        height: 88px;
+        border-radius: 6px;
+        background: #0d2826;
+        color: #d9f4ee;
+        font-weight: 900;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+
+      .board-pins {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .board-pins span {
+        aspect-ratio: 1;
+        border-radius: 3px;
+        background: #f4c430;
+        box-shadow: inset 0 -2px 0 rgba(17, 24, 39, 0.18);
+      }
+
+      .phone-visual {
+        position: absolute;
+        top: 116px;
+        right: 18px;
+        width: 208px;
+        min-height: 398px;
+        padding: 14px;
+        border: 10px solid var(--ink-900);
+        border-radius: 32px;
+        background: #f9fafb;
+        box-shadow: var(--shadow);
+        transform: rotate(3deg);
+      }
+
+      .phone-speaker {
+        width: 66px;
+        height: 5px;
+        margin: 0 auto 16px;
+        border-radius: 999px;
+        background: #d1d5db;
+      }
+
+      .phone-screen {
+        display: grid;
+        gap: 12px;
+      }
+
+      .phone-header {
+        padding: 12px;
+        border-radius: var(--radius);
+        background: var(--ink-900);
+        color: #ffffff;
+        text-align: center;
+        font-weight: 900;
+      }
+
+      .control-pad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        direction: ltr;
+      }
+
+      .pad-key {
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1;
+        border: 0;
+        border-radius: var(--radius);
+        background: var(--blue-soft);
+        color: var(--blue);
+        font-family: inherit;
+        font-weight: 900;
+        box-shadow: inset 0 -3px 0 rgba(37, 99, 235, 0.13);
+      }
+
+      .pad-key.empty {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .pad-key.stop {
+        background: var(--rose-soft);
+        color: var(--rose);
+      }
+
+      .speed-bars {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        align-items: end;
+        height: 54px;
+        gap: 5px;
+        padding: 10px;
+        border-radius: var(--radius);
+        background: #eef2f7;
+        direction: ltr;
+      }
+
+      .speed-bars span {
+        min-height: 8px;
+        border-radius: 3px;
+        background: var(--teal);
+      }
+
+      .speed-bars span:nth-child(2) {
+        height: 14px;
+      }
+      .speed-bars span:nth-child(3) {
+        height: 18px;
+      }
+      .speed-bars span:nth-child(4) {
+        height: 22px;
+      }
+      .speed-bars span:nth-child(5) {
+        height: 26px;
+      }
+      .speed-bars span:nth-child(6) {
+        height: 30px;
+      }
+      .speed-bars span:nth-child(7) {
+        height: 34px;
+      }
+      .speed-bars span:nth-child(8) {
+        height: 38px;
+      }
+      .speed-bars span:nth-child(9) {
+        height: 42px;
+      }
+      .speed-bars span:nth-child(10) {
+        height: 46px;
+        background: var(--amber);
+      }
+
+      .car-visual {
+        position: absolute;
+        right: 122px;
+        bottom: 38px;
+        width: 430px;
+        height: 206px;
+        z-index: 2;
+      }
+
+      .car-body {
+        position: absolute;
+        right: 0;
+        bottom: 42px;
+        width: 100%;
+        height: 118px;
+        border-radius: 52px 88px 34px 34px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 45%),
+          linear-gradient(90deg, #0f766e, #14b8a6 48%, #f59e0b);
+        box-shadow: 0 26px 44px rgba(17, 24, 39, 0.16);
+      }
+
+      .car-body::before {
+        content: "";
+        position: absolute;
+        right: 92px;
+        top: -54px;
+        width: 192px;
+        height: 82px;
+        border-radius: 70px 84px 16px 8px;
+        background: #ecfeff;
+        border: 8px solid var(--ink-900);
+        border-bottom: 0;
+        transform: skewX(-8deg);
+      }
+
+      .car-body::after {
+        content: "";
+        position: absolute;
+        left: 24px;
+        top: 42px;
+        width: 54px;
+        height: 18px;
+        border-radius: 999px;
+        background: #fff7cc;
+        box-shadow: 0 0 24px rgba(245, 158, 11, 0.68);
+      }
+
+      .wheel {
+        position: absolute;
+        bottom: 10px;
+        width: 88px;
+        height: 88px;
+        border: 14px solid var(--ink-900);
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: inset 0 0 0 10px #cbd5e1;
+        animation: wheelSpin 2.8s linear infinite;
+      }
+
+      .wheel::after {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border-radius: 50%;
+        background: var(--ink-800);
+      }
+
+      .wheel.front {
+        left: 54px;
+      }
+
+      .wheel.back {
+        right: 60px;
+      }
+
+      .signal-line {
+        position: absolute;
+        z-index: 1;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--blue),
+          transparent
+        );
+        opacity: 0.7;
+        transform-origin: right center;
+        animation: signalSweep 2.2s ease-in-out infinite;
+      }
+
+      .signal-line.one {
+        top: 224px;
+        right: 210px;
+        width: 220px;
+        transform: rotate(-12deg);
+      }
+
+      .signal-line.two {
+        top: 298px;
+        right: 224px;
+        width: 186px;
+        transform: rotate(9deg);
+        animation-delay: 0.45s;
+      }
+
+      .stat-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .stat {
+        padding: 14px;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--ink-900);
+        font-size: 1.12rem;
+        line-height: 1.2;
+      }
+
+      .stat span {
+        color: var(--ink-500);
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .concept-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+        align-items: center;
+        gap: 48px;
+      }
+
+      .story-panel {
+        display: grid;
+        gap: 18px;
+        max-width: 740px;
+      }
+
+      .story-panel p {
+        color: var(--ink-600);
+        font-size: 1.12rem;
+        font-weight: 600;
+      }
+
+      .story-panel strong {
+        color: var(--teal);
+        font-weight: 900;
+      }
+
+      .flow-visual {
+        display: grid;
+        gap: 18px;
+      }
+
+      .flow-node {
+        position: relative;
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr);
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .flow-node:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: -19px;
+        right: 51px;
+        width: 2px;
+        height: 20px;
+        background: rgba(15, 118, 110, 0.35);
+      }
+
+      .flow-icon {
+        display: grid;
+        place-items: center;
+        width: 72px;
+        height: 72px;
+        border-radius: var(--radius);
+        color: #ffffff;
+        font-weight: 900;
+        font-size: 1.24rem;
+      }
+
+      .flow-node:nth-child(1) .flow-icon {
+        background: var(--blue);
+      }
+      .flow-node:nth-child(2) .flow-icon {
+        background: var(--teal);
+      }
+      .flow-node:nth-child(3) .flow-icon {
+        background: var(--amber);
+        color: var(--ink-900);
+      }
+      .flow-node:nth-child(4) .flow-icon {
+        background: var(--rose);
+      }
+
+      .flow-node h3 {
+        margin-bottom: 2px;
+      }
+
+      .flow-node p {
+        color: var(--ink-500);
+        font-size: 0.96rem;
+        font-weight: 700;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .hardware-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card {
+        position: relative;
+        padding: 24px;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        top: 0;
+        height: 4px;
+        background: var(--card-accent, var(--teal));
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(17, 24, 39, 0.18);
+        box-shadow: var(--shadow);
+      }
+
+      .card.teal {
+        --card-accent: var(--teal);
+      }
+      .card.amber {
+        --card-accent: var(--amber);
+      }
+      .card.rose {
+        --card-accent: var(--rose);
+      }
+      .card.blue {
+        --card-accent: var(--blue);
+      }
+
+      .part-icon {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        margin-bottom: 18px;
+        border-radius: var(--radius);
+        background: var(--icon-bg, var(--teal-soft));
+        color: var(--icon-color, var(--teal));
+      }
+
+      .part-icon svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .card.amber .part-icon {
+        --icon-bg: var(--amber-soft);
+        --icon-color: #b45309;
+      }
+      .card.rose .part-icon {
+        --icon-bg: var(--rose-soft);
+        --icon-color: var(--rose);
+      }
+      .card.blue .part-icon {
+        --icon-bg: var(--blue-soft);
+        --icon-color: var(--blue);
+      }
+
+      .card p {
+        margin-top: 10px;
+        color: var(--ink-600);
+        font-size: 0.98rem;
+        font-weight: 600;
+      }
+
+      .app-layout {
+        display: grid;
+        grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+        align-items: center;
+        gap: 54px;
+      }
+
+      .app-phone {
+        width: min(390px, 100%);
+        margin-inline: auto;
+        padding: 16px;
+        border: 12px solid var(--ink-900);
+        border-radius: 36px;
+        background: #f8fafc;
+        box-shadow: var(--shadow);
+      }
+
+      .app-screen {
+        display: grid;
+        gap: 16px;
+        min-height: 650px;
+        padding: 18px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, #ffffff, #f1f5f9);
+      }
+
+      .app-status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--ink-500);
+        font-size: 0.78rem;
+        font-weight: 900;
+        direction: ltr;
+      }
+
+      .connection-card {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+        border-radius: var(--radius);
+        background: var(--ink-900);
+        color: #ffffff;
+      }
+
+      .connection-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .connection-top strong {
+        font-size: 1.1rem;
+        line-height: 1.2;
+      }
+
+      .connection-pill {
+        min-width: max-content;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(22, 163, 74, 0.16);
+        color: #86efac;
+        font-size: 0.72rem;
+        font-weight: 900;
+      }
+
+      .connection-meter {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        gap: 4px;
+        height: 36px;
+        align-items: end;
+        direction: ltr;
+      }
+
+      .connection-meter span {
+        height: 12px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.22);
+      }
+
+      .connection-meter span:nth-child(n + 7) {
+        height: 22px;
+        background: #2dd4bf;
+      }
+
+      .connection-meter span:nth-child(n + 12) {
+        height: 30px;
+        background: #fbbf24;
+      }
+
+      .app-direction-pad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        direction: ltr;
+      }
+
+      .app-key {
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1;
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        border-radius: var(--radius);
+        background: #ffffff;
+        color: var(--ink-900);
+        font-size: 1.35rem;
+        font-weight: 900;
+        box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+      }
+
+      .app-key.empty {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+      }
+
+      .app-key.primary {
+        background: var(--teal);
+        color: #ffffff;
+      }
+
+      .app-key.stop {
+        background: var(--rose);
+        color: #ffffff;
+      }
+
+      .speed-panel {
+        display: grid;
+        gap: 12px;
+        padding: 14px;
+        border-radius: var(--radius);
+        background: #ffffff;
+        border: 1px solid rgba(17, 24, 39, 0.08);
+      }
+
+      .speed-labels {
+        display: flex;
+        justify-content: space-between;
+        color: var(--ink-500);
+        font-size: 0.8rem;
+        font-weight: 900;
+      }
+
+      .slider-track {
+        position: relative;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--teal) 0 72%, #e5e7eb 72% 100%);
+        direction: ltr;
+      }
+
+      .slider-track::after {
+        content: "";
+        position: absolute;
+        left: 72%;
+        top: 50%;
+        width: 24px;
+        height: 24px;
+        border: 4px solid #ffffff;
+        border-radius: 50%;
+        background: var(--teal);
+        box-shadow: 0 6px 14px rgba(15, 118, 110, 0.28);
+        transform: translate(-50%, -50%);
+      }
+
+      .app-chip-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .app-chip {
+        display: grid;
+        place-items: center;
+        min-height: 44px;
+        border-radius: var(--radius);
+        background: #eef2f7;
+        color: var(--ink-700);
+        font-weight: 900;
+      }
+
+      .app-copy {
+        display: grid;
+        gap: 24px;
+      }
+
+      .feature-list {
+        display: grid;
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .feature-list li {
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 14px;
+        align-items: start;
+        color: var(--ink-600);
+        font-weight: 700;
+      }
+
+      .feature-list span {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: var(--radius);
+        background: var(--teal-soft);
+        color: var(--teal);
+        font-weight: 900;
+      }
+
+      .commands-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .command-card {
+        display: grid;
+        gap: 18px;
+      }
+
+      .command-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        direction: ltr;
+        justify-content: flex-end;
+      }
+
+      .badge {
+        display: grid;
+        place-items: center;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0 10px;
+        border-radius: var(--radius);
+        background: var(--ink-900);
+        color: #ffffff;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 1.02rem;
+        font-weight: 900;
+        direction: ltr;
+      }
+
+      .badge.blue {
+        background: var(--blue);
+      }
+      .badge.rose {
+        background: var(--rose);
+      }
+      .badge.amber {
+        background: var(--amber);
+        color: var(--ink-900);
+      }
+
+      .code {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 8px;
+        border-radius: 6px;
+        background: #eef2f7;
+        color: var(--rose);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.9em;
+        font-weight: 900;
+        direction: ltr;
+      }
+
+      /* ---------------------------------------------------- */
+      /* Styles for New Section 5 (Circuit Layout & Specs)    */
+      /* ---------------------------------------------------- */
+      .circuit-layout-new {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 28px;
+        align-items: start;
+      }
+      .circuit-card {
+        background: var(--panel);
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+      }
+      .circuit-card svg {
+        display: block;
+        width: 100%;
+      }
+      .specs-panel {
+        display: grid;
+        gap: 16px;
+      }
+      .spec-group {
+        background: var(--panel);
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+      }
+      .spec-group-head {
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.07);
+        background: rgba(17, 24, 39, 0.025);
+        font-size: 0.82rem;
+        font-weight: 900;
+        color: var(--ink-700);
+      }
+      .spec-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 16px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.05);
+        font-size: 0.88rem;
+      }
+      .spec-row:last-child {
+        border-bottom: 0;
+      }
+      .spec-row .label {
+        color: var(--ink-600);
+        font-weight: 700;
+      }
+      .spec-row .val {
+        font-family: ui-monospace, monospace;
+        font-weight: 900;
+        font-size: 0.84rem;
+        padding: 2px 8px;
+        border-radius: 5px;
+        direction: ltr;
+      }
+      .val.teal {
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+      .val.blue {
+        background: var(--blue-soft);
+        color: var(--blue);
+      }
+      .val.violet {
+        background: var(--violet-soft);
+        color: var(--violet);
+      }
+      .val.coral {
+        background: var(--coral-soft);
+        color: var(--coral);
+      }
+      .val.amber {
+        background: var(--amber-soft);
+        color: #b45309;
+      }
+      .val.rose {
+        background: var(--rose-soft);
+        color: var(--rose);
+      }
+
+      .legend {
+        background: var(--panel);
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        padding: 16px 20px;
+      }
+      .legend h3 {
+        font-size: 0.82rem;
+        font-weight: 900;
+        color: var(--ink-700);
+        margin-bottom: 12px;
+      }
+      .legend-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px 24px;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--ink-600);
+      }
+      .legend-line {
+        width: 28px;
+        height: 3px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      .legend-line.dashed {
+        background: repeating-linear-gradient(
+          90deg,
+          currentColor 0 5px,
+          transparent 5px 8px
+        );
+      }
+
+      @media (max-width: 820px) {
+        .circuit-layout-new {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Demo Section Styles */
+      .demo-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(330px, 0.78fr);
+        align-items: stretch;
+        gap: 24px;
+      }
+
+      .demo-stage {
+        position: relative;
+        min-height: 520px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        background:
+          linear-gradient(
+            135deg,
+            rgba(17, 24, 39, 0.92),
+            rgba(31, 41, 55, 0.94)
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent 0 38px,
+            rgba(255, 255, 255, 0.06) 38px 40px
+          );
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .track {
+        position: absolute;
+        inset: 72px 46px 64px;
+        border: 6px solid rgba(255, 255, 255, 0.14);
+        border-radius: 48px;
+      }
+
+      .track::before {
+        content: "";
+        position: absolute;
+        inset: 44px;
+        border: 3px dashed rgba(255, 255, 255, 0.14);
+        border-radius: 34px;
+      }
+
+      .demo-car {
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        width: 148px;
+        height: 72px;
+        border-radius: 24px 38px 20px 20px;
+        background: linear-gradient(90deg, var(--teal), var(--amber));
+        transform: translate(-50%, -50%) rotate(-8deg);
+        box-shadow: 0 20px 34px rgba(0, 0, 0, 0.26);
+        animation: demoDrive 5s ease-in-out infinite;
+      }
+
+      .demo-car::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        right: 42px;
+        width: 56px;
+        height: 34px;
+        border-radius: 24px 24px 6px 6px;
+        background: #dffafa;
+        border: 4px solid var(--ink-900);
+      }
+
+      .demo-car::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 24px;
+        width: 20px;
+        height: 9px;
+        border-radius: 999px;
+        background: #fff7cc;
+        box-shadow: 0 0 18px rgba(245, 158, 11, 0.76);
+      }
+
+      .play-badge {
+        position: absolute;
+        inset-inline-start: 26px;
+        top: 26px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #ffffff;
+        font-weight: 900;
+      }
+
+      .play-icon {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.16);
+        backdrop-filter: blur(8px);
+      }
+
+      .play-icon::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 9px solid transparent;
+        border-bottom: 9px solid transparent;
+        border-right: 14px solid #ffffff;
+        transform: translateX(-1px);
+      }
+
+      .demo-metrics {
+        display: grid;
+        gap: 14px;
+      }
+
+      .metric {
+        padding: 20px;
+        border-radius: var(--radius);
+        background: var(--panel);
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--ink-900);
+        font-size: 1.45rem;
+        line-height: 1.1;
+      }
+
+      .metric span {
+        color: var(--ink-500);
+        font-weight: 800;
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 620ms ease,
+          transform 620ms ease;
+      }
+
+      .fade-up.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes pulseRing {
+        0%,
+        100% {
+          transform: scale(0.95);
+          opacity: 0.65;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+      }
+
+      @keyframes signalSweep {
+        0%,
+        100% {
+          opacity: 0.25;
+        }
+        50% {
+          opacity: 0.95;
+        }
+      }
+
+      @keyframes wheelSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes demoDrive {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) rotate(-8deg);
+        }
+        50% {
+          transform: translate(-36%, -58%) rotate(9deg);
+        }
+      }
+
+      @media (max-width: 1080px) {
+        :root {
+          --section-pad: 76px;
+        }
+
+        .hero-grid,
+        .concept-layout,
+        .app-layout,
+        .circuit-layout-new,
+        .demo-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-title-wrap h1 {
+          font-size: 4.8rem;
+        }
+
+        .hero-stage {
+          min-height: 500px;
+        }
+
+        .hardware-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        :root {
+          --section-pad: 58px;
+        }
+
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 4px;
+          padding: 12px 0;
+        }
+
+        .nav-pills {
+          width: 100%;
+        }
+
+        h1,
+        .hero-title-wrap h1 {
+          font-size: 3.35rem;
+        }
+
+        h2 {
+          font-size: 1.85rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.12rem;
+        }
+
+        .section {
+          min-height: auto;
+        }
+
+        .hero-stage {
+          min-height: 470px;
+          transform: scale(0.84);
+          transform-origin: top center;
+          margin-bottom: -70px;
+        }
+
+        .board-visual {
+          left: -4px;
+          width: 228px;
+        }
+
+        .phone-visual {
+          right: -4px;
+        }
+
+        .car-visual {
+          right: 28px;
+          width: 370px;
+        }
+
+        .hardware-grid,
+        .commands-grid,
+        .stat-row {
+          grid-template-columns: 1fr;
+        }
+
+        .command-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .badges {
+          justify-content: flex-start;
+        }
+
+        .app-screen {
+          min-height: auto;
+        }
+      }
+
+      @media (max-width: 460px) {
+        .container,
+        .topbar-inner {
+          width: min(100% - 22px, 1180px);
+        }
+
+        .student-strip,
+        .hero-actions {
+          width: 100%;
+        }
+
+        .button {
+          flex: 1 1 100%;
+        }
+
+        .hero-stage {
+          transform: scale(0.72);
+          margin-bottom: -122px;
+        }
+
+        .card {
+          padding: 18px;
+        }
+
+        .flow-node,
+        .feature-list li {
+          grid-template-columns: 1fr;
+        }
+
+        .flow-node:not(:last-child)::after {
+          right: 34px;
+        }
+
+        .demo-stage {
+          min-height: 420px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck-shell">
+      <header class="topbar" aria-label="شريط التنقل">
+        <div class="topbar-inner">
+          <a class="brand-lockup" href="#cover" aria-label="3asal">
+            <span class="brand-mark">N</span>
+            <span class="brand-text">
+              <strong>3asal</strong>
+              <span>Smart Car System</span>
+            </span>
+          </a>
+
+          <nav class="nav-pills" aria-label="أقسام العرض">
+            <a href="#concept">مبدأ العمل</a>
+            <a href="#hardware">المكونات</a>
+            <a href="#app">التطبيق</a>
+            <a href="#commands">الأوامر</a>
+            <a href="#circuit">الدائرة</a>
+            <a href="#demo">التشغيل</a>
+            <a href="#thanks">الأسئلة</a>
+          </nav>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill"></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="section hero" id="cover">
+          <div class="container hero-grid">
+            <div class="hero-copy fade-up">
+              <div class="hero-title-wrap">
+                <h1>3asal</h1>
+                <p class="hero-subtitle">
+                  سيارة ذكية يتم التحكم بها عبر تطبيق هاتف، بالاعتماد على تقنية
+                  البلوتوث ومتحكم ESP32
+                </p>
+              </div>
+              <div class="student-strip">
+                <span class="label">إعداد</span>
+                <span class="name">عبير زغول</span>
+              </div>
+              <div class="hero-actions" aria-label="روابط سريعة">
+                <a class="button" href="#concept">ابدأ العرض</a>
+                <a class="button secondary" href="#app">مشاهدة واجهة التحكم</a>
+              </div>
+              <div class="stat-row" aria-label="مؤشرات النظام">
+                <div class="stat">
+                  <strong>Bluetooth</strong>
+                </div>
+                <div class="stat">
+                  <strong>ESP32</strong>
+                </div>
+                <div class="stat">
+                  <strong>4WD</strong>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="hero-stage fade-up"
+              aria-label="رسم بصري لنظام السيارة الذكية"
+            >
+              <div class="bluetooth-rings" aria-hidden="true"></div>
+              <div class="signal-line one" aria-hidden="true"></div>
+              <div class="signal-line two" aria-hidden="true"></div>
+              <div class="board-visual" aria-hidden="true">
+                <div class="board-chip">ESP32</div>
+                <div class="board-pins">
+                  <span></span><span></span><span></span><span></span
+                  ><span></span> <span></span><span></span><span></span
+                  ><span></span><span></span>
+                </div>
+              </div>
+              <div class="phone-visual" aria-hidden="true">
+                <div class="phone-speaker"></div>
+                <div class="phone-screen">
+                  <div class="phone-header">3asal Control</div>
+                  <div class="control-pad">
+                    <span class="pad-key empty"></span>
+                    <span class="pad-key">F</span>
+                    <span class="pad-key empty"></span>
+                    <span class="pad-key">L</span>
+                    <span class="pad-key stop">S</span>
+                    <span class="pad-key">R</span>
+                    <span class="pad-key empty"></span>
+                    <span class="pad-key">B</span>
+                    <span class="pad-key empty"></span>
+                  </div>
+                  <div class="speed-bars">
+                    <span></span><span></span><span></span><span></span
+                    ><span></span> <span></span><span></span><span></span
+                    ><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="car-visual" aria-hidden="true">
+                <div class="car-body"></div>
+                <div class="wheel front"></div>
+                <div class="wheel back"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section alt" id="concept">
+          <div class="container concept-layout">
+            <div class="story-panel fade-up">
+              <div class="section-heading">
+                <span class="kicker">01 | مبدأ العمل</span>
+                <h2>
+                  ترتكز مركبة نشمي على التكامل اللحظي بين واجهة التطبيق الذكي
+                  والمنظومة الميكانيكية عبر بروتوكول الاتصال اللاسلكي
+                  <strong>Bluetooth</strong>
+                </h2>
+              </div>
+              <p>
+                عند إصدار المستخدم للأمر عبر التطبيق (كإرسال حرف إنجليزي محدد)،
+                يلتقط متحكم <strong>ESP32</strong> هذه الإشارة ليحللها، ثم يوجه
+                مشغل PCA9685 لإصدار إشارات تحكم دقيقة (PWM) تصل إلى المشغلات،
+                لضمان استجابة المحركات بالاتجاه والسرعة المطلوبة
+              </p>
+            </div>
+
+            <div class="flow-visual fade-up" aria-label="تسلسل عمل النظام">
+              <div class="flow-node">
+                <span class="flow-icon">1</span>
+                <div>
+                  <h3>أمر التوجيه</h3>
+                  <p>
+                    يُصدر المستخدم أمر الحركة عبر واجهة التطبيق (مثل F, B, R, L)
+                  </p>
+                </div>
+              </div>
+              <div class="flow-node">
+                <span class="flow-icon">2</span>
+                <div>
+                  <h3>نقل البيانات</h3>
+                  <p>تُرسل الإشارات لاسلكياً بزمن انتقال (Latency) شبه معدوم</p>
+                </div>
+              </div>
+              <div class="flow-node">
+                <span class="flow-icon">3</span>
+                <div>
+                  <h3>المعالجة المركزية</h3>
+                  <p>
+                    يحلل ESP32 البيانات ويولد إشارات النبضة (PWM) داخلياً
+                    لإرسالها مباشرة إلى مشغلات الحركة
+                  </p>
+                </div>
+              </div>
+              <div class="flow-node">
+                <span class="flow-icon">4</span>
+                <div>
+                  <h3>الاستجابة الحركية</h3>
+                  <p>
+                    تترجم الإشارات إلى حركة عبر توجيه الطاقة لمحركات الدفع
+                    الرباعي
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="hardware">
+          <div class="container">
+            <div class="section-heading fade-up">
+              <span class="kicker">02 | Hardware</span>
+              <h2>مكونات السيارة</h2>
+              <!-- <p class="lead">تم تصميم العتاد ليعمل كمنظومة متناغمة: استقبال البيانات، معالجتها، توزيع الطاقة، والتنفيذ الحركي.</p> -->
+            </div>
+
+            <div class="grid hardware-grid">
+              <article class="card teal fade-up">
+                <span class="part-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+                    <path
+                      d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"
+                    ></path>
+                  </svg>
+                </span>
+                <h3>ESP32 Microcontroller</h3>
+                <p>
+                  وحدة المعالجة المركزية تستقبل البيانات لاسلكيا تفك تشفيرها
+                  وتولد إشارات النبضة PWM داخليا للتحكم الدقيق والمباشر في سرعة
+                  واستقرار الحركة
+                </p>
+              </article>
+
+              <article class="card amber fade-up">
+                <span class="part-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z"></path>
+                  </svg>
+                </span>
+                <h3>L298N Motor Driver</h3>
+                <p>
+                  دائرة القيادة وتضخيم التيار تستقبل إشارات الاتجاه والسرعة PWM
+                  مباشرة من متحكم ESP32 لتقوم بتوزيع الطاقة وتوجيه المحركات
+                  بكفاءة
+                </p>
+              </article>
+
+              <article class="card blue fade-up">
+                <span class="part-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="7" cy="17" r="3"></circle>
+                    <circle cx="17" cy="17" r="3"></circle>
+                    <path
+                      d="M4 17H2v-5l3-5h9l4 5h4v5h-2M10 17h4M6 7l2 5h8"
+                    ></path>
+                  </svg>
+                </span>
+                <h3>4WD DC Motors</h3>
+                <p>
+                  منظومة دفع رباعي تعتمد على التوجيه التفاضلي (Differential
+                  Drive)، مما يتيح الالتفاف المحوري بمرونة فائقة وثبات على مختلف
+                  الأسطح.
+                </p>
+              </article>
+
+              <article class="card rose fade-up">
+                <span class="part-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="7" width="16" height="10" rx="2"></rect>
+                    <path d="M21 11v2M7 11v2M11 11v2M15 11v2"></path>
+                  </svg>
+                </span>
+                <h3>11.1V Power Supply</h3>
+                <p>
+                  مصدر طاقة مستقر يوفر تياراً عالياً (High Discharge) لمنع هبوط
+                  الجهد (Voltage Drop) أثناء التسارع المفاجئ للمركبة.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section alt" id="app">
+          <div class="container app-layout">
+            <div class="app-phone fade-up" aria-label="واجهة تطبيق التحكم">
+              <div class="app-screen">
+                <div class="app-status">
+                  <span>9:41</span>
+                  <span>BT 100%</span>
+                </div>
+                <div class="connection-card">
+                  <div class="connection-top">
+                    <strong>3asal Control</strong>
+                    <span class="connection-pill">Connected</span>
+                  </div>
+                  <div class="connection-meter" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="app-direction-pad">
+                  <span class="app-key empty"></span>
+                  <span class="app-key primary">F</span>
+                  <span class="app-key empty"></span>
+                  <span class="app-key">L</span>
+                  <span class="app-key stop">S</span>
+                  <span class="app-key">R</span>
+                  <span class="app-key empty"></span>
+                  <span class="app-key primary">B</span>
+                  <span class="app-key empty"></span>
+                </div>
+                <div class="speed-panel">
+                  <div class="speed-labels">
+                    <span>Speed</span>
+                    <span>72%</span>
+                  </div>
+                  <div class="slider-track" aria-hidden="true"></div>
+                </div>
+                <div class="app-chip-row">
+                  <span class="app-chip">G</span>
+                  <span class="app-chip">q</span>
+                  <span class="app-chip">X</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="app-copy fade-up">
+              <div class="section-heading">
+                <span class="kicker">03 | Mobile Application</span>
+                <h2>شكل تقريبي لواجهة تحكم في ابلكيشن</h2>
+                <p class="lead">
+                  توفر الواجهة تحكم كامل بالمركبة مع عرض حي لحالة الاتصال
+                  ومؤشرات السرعة وازرار التوجيه بدقة عالية
+                </p>
+              </div>
+              <!-- <ul class="feature-list">
+              <li>
+                <span>F</span>
+                <p>أزرار التوجيه الأساسية والمائلة لضمان مناورة سلسة في جميع الاتجاهات.</p>
+              </li>
+              <li>
+                <span>q</span>
+                <p>شريط تحكم ديناميكي بالسرعة يعتمد على تعديل عرض النبضة (PWM).</p>
+              </li>
+              <li>
+                <span>S</span>
+                <p>مكابح الطوارئ (Stop) لإيقاف المحركات فوراً لضمان سلامة المنظومة.</p>
+              </li>
+            </ul> -->
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="commands">
+          <div class="container">
+            <div class="section-heading fade-up">
+              <span class="kicker">04 | Serial Commands</span>
+              <h2>بروتوكول الاتصال والأوامر البرمجية.</h2>
+              <p class="lead">
+                تعتمد المنظومة على مصفوفة أوامر تسلسلية (Serial Commands) لتحقيق
+                استجابة دقيقة ومنظمة.
+              </p>
+            </div>
+
+            <div class="grid commands-grid">
+              <article class="card teal command-card fade-up">
+                <div class="command-head">
+                  <h3>متجهات التوجيه الأساسية</h3>
+                  <div class="badges" aria-label="F B R L">
+                    <span class="badge">F</span>
+                    <span class="badge">B</span>
+                    <span class="badge">R</span>
+                    <span class="badge">L</span>
+                  </div>
+                </div>
+                <p>
+                  أوامر بسيطة بتخلي السيارة تتحرك بكل الاتجاهات (قدام، ورا،
+                  يمين، يسار) بشكل مباشر ومستقر
+                </p>
+              </article>
+
+              <article class="card blue command-card fade-up">
+                <div class="command-head">
+                  <h3>الدوران المرن والانسيابي</h3>
+                  <div class="badges" aria-label="G I H J">
+                    <span class="badge blue">G</span>
+                    <span class="badge blue">I</span>
+                    <span class="badge blue">H</span>
+                    <span class="badge blue">J</span>
+                  </div>
+                </div>
+                <p>
+                  بتسمح للسيارة تلف بشكل ناعم ومرن، وبتحافظ على توازنها وحركتها
+                  السلسة وقت الانعطافات المائلة
+                </p>
+              </article>
+
+              <article class="card amber command-card fade-up">
+                <div class="command-head">
+                  <h3>التحكم بمستويات السرعة</h3>
+                  <div class="badges" aria-label="0-9 q">
+                    <span class="badge amber">0-9</span>
+                    <span class="badge amber">q</span>
+                  </div>
+                </div>
+                <p>
+                  من خلالها بنقدر نتحكم بقوة المحركات ونختار السرعة اللي
+                  بتناسبنا، من الحركة الهادية لحد الانطلاق بأقصى سرعة بضغطة زر
+                </p>
+              </article>
+
+              <article class="card rose command-card fade-up">
+                <div class="command-head">
+                  <h3>المناورات السريعة والأمان</h3>
+                  <div class="badges" aria-label="V S X">
+                    <span class="badge rose">V</span>
+                    <span class="badge rose">S</span>
+                    <span class="badge blue">X</span>
+                  </div>
+                </div>
+                <p>
+                  بتعطينا خيارات متقدمة زي التوقف المفاجئ للأمان، أو الدوران
+                  السريع حول مركز السيارة (في مكانها) للمناورة في المساحات
+                  الضيقة
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section alt" id="circuit">
+          <div class="container">
+            <div class="section-heading fade-up">
+              <span class="kicker">05 | Circuit & Wiring</span>
+              <h2>البنية الإلكترونية وتوصيلات الدائرة.</h2>
+              <p class="lead">
+                مخطط هندسي يوضح توصيل المحركات الأربعة بـ Motor Driver عبر
+                OUT1–OUT4، وإشارات التحكم IN1–IN4 وENA/ENB من ESP32، وتوزيع
+                الطاقة من البطارية.
+              </p>
+            </div>
+
+            <div class="circuit-layout-new fade-up">
+              <!-- SVG Circuit -->
+              <div class="circuit-card">
+                <svg viewBox="0 0 640 520" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <marker
+                      id="arr"
+                      viewBox="0 0 10 10"
+                      refX="8"
+                      refY="5"
+                      markerWidth="6"
+                      markerHeight="6"
+                      orient="auto-start-reverse"
+                    >
+                      <path
+                        d="M2 1L8 5L2 9"
+                        fill="none"
+                        stroke="context-stroke"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </marker>
+                    <!-- grid bg -->
+                    <pattern
+                      id="grid"
+                      width="22"
+                      height="22"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <path
+                        d="M 22 0 L 0 0 0 22"
+                        fill="none"
+                        stroke="rgba(15,118,110,0.08)"
+                        stroke-width="0.5"
+                      />
+                    </pattern>
+                  </defs>
+
+                  <!-- Background -->
+                  <rect width="640" height="520" fill="#f8fffb" />
+                  <rect width="640" height="520" fill="url(#grid)" />
+
+                  <!-- ══════════════ MOTORS ══════════════ -->
+
+                  <!-- Motor FR (أمام يمين) - coral -->
+                  <rect
+                    x="468"
+                    y="28"
+                    width="148"
+                    height="54"
+                    rx="8"
+                    fill="#fff7f5"
+                    stroke="#ea580c"
+                    stroke-width="1.2"
+                  />
+                  <text
+                    x="542"
+                    y="49"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="12"
+                    font-weight="700"
+                    fill="#ea580c"
+                  >
+                    Motor FR
+                  </text>
+                  <text
+                    x="542"
+                    y="68"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#9a3412"
+                  >
+                    أمام يمين → OUT1
+                  </text>
+
+                  <!-- Motor RR (خلف يمين) - coral -->
+                  <rect
+                    x="468"
+                    y="428"
+                    width="148"
+                    height="54"
+                    rx="8"
+                    fill="#fff7f5"
+                    stroke="#ea580c"
+                    stroke-width="1.2"
+                  />
+                  <text
+                    x="542"
+                    y="449"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="12"
+                    font-weight="700"
+                    fill="#ea580c"
+                  >
+                    Motor RR
+                  </text>
+                  <text
+                    x="542"
+                    y="468"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#9a3412"
+                  >
+                    خلف يمين → OUT2
+                  </text>
+
+                  <!-- Motor FL (أمام يسار) - blue -->
+                  <rect
+                    x="24"
+                    y="28"
+                    width="148"
+                    height="54"
+                    rx="8"
+                    fill="#eff6ff"
+                    stroke="#2563eb"
+                    stroke-width="1.2"
+                  />
+                  <text
+                    x="98"
+                    y="49"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="12"
+                    font-weight="700"
+                    fill="#2563eb"
+                  >
+                    Motor FL
+                  </text>
+                  <text
+                    x="98"
+                    y="68"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#1d4ed8"
+                  >
+                    أمام يسار → OUT3
+                  </text>
+
+                  <!-- Motor RL (خلف يسار) - blue -->
+                  <rect
+                    x="24"
+                    y="428"
+                    width="148"
+                    height="54"
+                    rx="8"
+                    fill="#eff6ff"
+                    stroke="#2563eb"
+                    stroke-width="1.2"
+                  />
+                  <text
+                    x="98"
+                    y="449"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="12"
+                    font-weight="700"
+                    fill="#2563eb"
+                  >
+                    Motor RL
+                  </text>
+                  <text
+                    x="98"
+                    y="468"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#1d4ed8"
+                  >
+                    خلف يسار → OUT4
+                  </text>
+
+                  <!-- ══════════════ ESP32 ══════════════ -->
+                  <rect
+                    x="220"
+                    y="28"
+                    width="200"
+                    height="88"
+                    rx="8"
+                    fill="#f0fdf9"
+                    stroke="#0f766e"
+                    stroke-width="1.4"
+                  />
+                  <text
+                    x="320"
+                    y="52"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="13"
+                    font-weight="800"
+                    fill="#0f766e"
+                  >
+                    ESP32
+                  </text>
+                  <text
+                    x="320"
+                    y="70"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#134e4a"
+                  >
+                    IN1 IN2 IN3 IN4
+                  </text>
+                  <text
+                    x="320"
+                    y="86"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#134e4a"
+                  >
+                    ENA ENB GND ← 5V
+                  </text>
+                  <!-- pin dots on bottom edge of ESP32 -->
+                  <circle cx="256" cy="116" r="3" fill="#7c3aed" />
+                  <!-- IN1 -->
+                  <circle cx="278" cy="116" r="3" fill="#7c3aed" />
+                  <!-- IN2 -->
+                  <circle cx="300" cy="116" r="3" fill="#ea580c" />
+                  <!-- ENA -->
+                  <circle cx="322" cy="116" r="3" fill="#7c3aed" />
+                  <!-- IN3 -->
+                  <circle cx="344" cy="116" r="3" fill="#7c3aed" />
+                  <!-- IN4 -->
+                  <circle cx="366" cy="116" r="3" fill="#ea580c" />
+                  <!-- ENB -->
+                  <text
+                    x="256"
+                    y="128"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#7c3aed"
+                  >
+                    IN1
+                  </text>
+                  <text
+                    x="278"
+                    y="128"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#7c3aed"
+                  >
+                    IN2
+                  </text>
+                  <text
+                    x="300"
+                    y="128"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#ea580c"
+                  >
+                    ENA
+                  </text>
+                  <text
+                    x="322"
+                    y="128"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#7c3aed"
+                  >
+                    IN3
+                  </text>
+                  <text
+                    x="344"
+                    y="128"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#7c3aed"
+                  >
+                    IN4
+                  </text>
+                  <text
+                    x="366"
+                    y="128"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#ea580c"
+                  >
+                    ENB
+                  </text>
+
+                  <!-- ══════════════ MOTOR DRIVER ══════════════ -->
+                  <rect
+                    x="190"
+                    y="218"
+                    width="260"
+                    height="160"
+                    rx="8"
+                    fill="#faf5ff"
+                    stroke="#7c3aed"
+                    stroke-width="1.4"
+                  />
+                  <text
+                    x="320"
+                    y="242"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="13"
+                    font-weight="800"
+                    fill="#7c3aed"
+                  >
+                    Motor Driver
+                  </text>
+                  <text
+                    x="320"
+                    y="260"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#6d28d9"
+                  >
+                    L298N / PCA9685
+                  </text>
+
+                  <!-- divider -->
+                  <line
+                    x1="195"
+                    y1="270"
+                    x2="445"
+                    y2="270"
+                    stroke="#ddd6fe"
+                    stroke-width="1"
+                  />
+                  <line
+                    x1="320"
+                    y1="272"
+                    x2="320"
+                    y2="374"
+                    stroke="#ddd6fe"
+                    stroke-width="1"
+                  />
+
+                  <!-- Left half: يسار OUT3/OUT4 -->
+                  <text
+                    x="255"
+                    y="288"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="800"
+                    fill="#2563eb"
+                  >
+                    يسار
+                  </text>
+                  <text
+                    x="197"
+                    y="310"
+                    text-anchor="start"
+                    font-family="Cairo,sans-serif"
+                    font-size="9.5"
+                    font-weight="700"
+                    fill="#1d4ed8"
+                  >
+                    OUT3 ← FL (+)
+                  </text>
+                  <text
+                    x="197"
+                    y="330"
+                    text-anchor="start"
+                    font-family="Cairo,sans-serif"
+                    font-size="9.5"
+                    font-weight="700"
+                    fill="#1d4ed8"
+                  >
+                    OUT4 ← RL (-)
+                  </text>
+                  <!-- OUT3 OUT4 exit dots left -->
+                  <circle cx="190" cy="308" r="4" fill="#2563eb" />
+                  <circle cx="190" cy="328" r="4" fill="#2563eb" />
+                  <text
+                    x="182"
+                    y="312"
+                    text-anchor="end"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#2563eb"
+                  >
+                    OUT3
+                  </text>
+                  <text
+                    x="182"
+                    y="332"
+                    text-anchor="end"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#2563eb"
+                  >
+                    OUT4
+                  </text>
+
+                  <!-- Right half: يمين OUT1/OUT2 -->
+                  <text
+                    x="385"
+                    y="288"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="800"
+                    fill="#ea580c"
+                  >
+                    يمين
+                  </text>
+                  <text
+                    x="325"
+                    y="310"
+                    text-anchor="start"
+                    font-family="Cairo,sans-serif"
+                    font-size="9.5"
+                    font-weight="700"
+                    fill="#9a3412"
+                  >
+                    OUT1 ← FR (+)
+                  </text>
+                  <text
+                    x="325"
+                    y="330"
+                    text-anchor="start"
+                    font-family="Cairo,sans-serif"
+                    font-size="9.5"
+                    font-weight="700"
+                    fill="#9a3412"
+                  >
+                    OUT2 ← RR (-)
+                  </text>
+                  <!-- OUT1 OUT2 exit dots right -->
+                  <circle cx="450" cy="308" r="4" fill="#ea580c" />
+                  <circle cx="450" cy="328" r="4" fill="#ea580c" />
+                  <text
+                    x="458"
+                    y="312"
+                    text-anchor="start"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#ea580c"
+                  >
+                    OUT1
+                  </text>
+                  <text
+                    x="458"
+                    y="332"
+                    text-anchor="start"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#ea580c"
+                  >
+                    OUT2
+                  </text>
+
+                  <!-- IN/EN pin labels on top of driver -->
+                  <text
+                    x="256"
+                    y="352"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    fill="#7c3aed"
+                  >
+                    IN1
+                  </text>
+                  <text
+                    x="278"
+                    y="352"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    fill="#7c3aed"
+                  >
+                    IN2
+                  </text>
+                  <text
+                    x="300"
+                    y="352"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    fill="#ea580c"
+                  >
+                    ENA
+                  </text>
+                  <text
+                    x="322"
+                    y="352"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    fill="#7c3aed"
+                  >
+                    IN3
+                  </text>
+                  <text
+                    x="344"
+                    y="352"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    fill="#7c3aed"
+                  >
+                    IN4
+                  </text>
+                  <text
+                    x="366"
+                    y="352"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    fill="#ea580c"
+                  >
+                    ENB
+                  </text>
+                  <!-- dots on top edge of driver for IN pins -->
+                  <circle cx="256" cy="218" r="3" fill="#7c3aed" />
+                  <circle cx="278" cy="218" r="3" fill="#7c3aed" />
+                  <circle cx="300" cy="218" r="3" fill="#ea580c" />
+                  <circle cx="322" cy="218" r="3" fill="#7c3aed" />
+                  <circle cx="344" cy="218" r="3" fill="#7c3aed" />
+                  <circle cx="366" cy="218" r="3" fill="#ea580c" />
+
+                  <!-- VCC/GND dots bottom of driver -->
+                  <circle cx="310" cy="378" r="4" fill="#f59e0b" />
+                  <circle cx="330" cy="378" r="4" fill="#6b7280" />
+                  <text
+                    x="310"
+                    y="392"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#b45309"
+                  >
+                    VCC
+                  </text>
+                  <text
+                    x="330"
+                    y="392"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#6b7280"
+                  >
+                    GND
+                  </text>
+                  <!-- 5V out dot -->
+                  <circle cx="350" cy="378" r="4" fill="#0f766e" />
+                  <text
+                    x="350"
+                    y="392"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8"
+                    fill="#0f766e"
+                  >
+                    5V↑
+                  </text>
+
+                  <!-- ══════════════ BATTERY ══════════════ -->
+                  <rect
+                    x="240"
+                    y="438"
+                    width="160"
+                    height="54"
+                    rx="8"
+                    fill="#fffbeb"
+                    stroke="#f59e0b"
+                    stroke-width="1.4"
+                  />
+                  <text
+                    x="320"
+                    y="460"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="12"
+                    font-weight="800"
+                    fill="#b45309"
+                  >
+                    Battery 11.1V
+                  </text>
+                  <text
+                    x="320"
+                    y="478"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="10"
+                    font-weight="600"
+                    fill="#92400e"
+                  >
+                    LiPo — موجب / سالب
+                  </text>
+
+                  <!-- ══════════════ WIRES ══════════════ -->
+
+                  <!-- ESP32 pins → Driver pins (IN1-IN4, ENA, ENB) -->
+                  <line
+                    x1="256"
+                    y1="116"
+                    x2="256"
+                    y2="218"
+                    stroke="#7c3aed"
+                    stroke-width="1.4"
+                    marker-end="url(#arr)"
+                  />
+                  <line
+                    x1="278"
+                    y1="116"
+                    x2="278"
+                    y2="218"
+                    stroke="#7c3aed"
+                    stroke-width="1.4"
+                    marker-end="url(#arr)"
+                  />
+                  <line
+                    x1="300"
+                    y1="116"
+                    x2="300"
+                    y2="218"
+                    stroke="#ea580c"
+                    stroke-width="1.6"
+                    marker-end="url(#arr)"
+                  />
+                  <line
+                    x1="322"
+                    y1="116"
+                    x2="322"
+                    y2="218"
+                    stroke="#7c3aed"
+                    stroke-width="1.4"
+                    marker-end="url(#arr)"
+                  />
+                  <line
+                    x1="344"
+                    y1="116"
+                    x2="344"
+                    y2="218"
+                    stroke="#7c3aed"
+                    stroke-width="1.4"
+                    marker-end="url(#arr)"
+                  />
+                  <line
+                    x1="366"
+                    y1="116"
+                    x2="366"
+                    y2="218"
+                    stroke="#ea580c"
+                    stroke-width="1.6"
+                    marker-end="url(#arr)"
+                  />
+
+                  <!-- 5V Driver → ESP32 (dashed green, right side) -->
+                  <line
+                    x1="350"
+                    y1="378"
+                    x2="350"
+                    y2="140"
+                    stroke="#0f766e"
+                    stroke-width="1.3"
+                    stroke-dasharray="5 3"
+                    marker-end="url(#arr)"
+                  />
+                  <line
+                    x1="350"
+                    y1="140"
+                    x2="420"
+                    y2="140"
+                    stroke="#0f766e"
+                    stroke-width="1.3"
+                    stroke-dasharray="5 3"
+                  />
+                  <line
+                    x1="420"
+                    y1="140"
+                    x2="420"
+                    y2="116"
+                    stroke="#0f766e"
+                    stroke-width="1.3"
+                    stroke-dasharray="5 3"
+                    marker-end="url(#arr)"
+                  />
+
+                  <!-- Battery + → Driver VCC -->
+                  <line
+                    x1="310"
+                    y1="438"
+                    x2="310"
+                    y2="378"
+                    stroke="#f59e0b"
+                    stroke-width="2"
+                    marker-end="url(#arr)"
+                  />
+
+                  <!-- Battery GND → Driver GND + ESP32 GND (common, left route) -->
+                  <line
+                    x1="270"
+                    y1="438"
+                    x2="270"
+                    y2="410"
+                    stroke="#9ca3af"
+                    stroke-width="1.3"
+                    stroke-dasharray="4 3"
+                  />
+                  <line
+                    x1="270"
+                    y1="410"
+                    x2="148"
+                    y2="410"
+                    stroke="#9ca3af"
+                    stroke-width="1.3"
+                    stroke-dasharray="4 3"
+                  />
+                  <line
+                    x1="148"
+                    y1="410"
+                    x2="148"
+                    y2="92"
+                    stroke="#9ca3af"
+                    stroke-width="1.3"
+                    stroke-dasharray="4 3"
+                  />
+                  <!-- GND to ESP32 -->
+                  <line
+                    x1="148"
+                    y1="92"
+                    x2="220"
+                    y2="92"
+                    stroke="#9ca3af"
+                    stroke-width="1.3"
+                    stroke-dasharray="4 3"
+                    marker-end="url(#arr)"
+                  />
+                  <!-- GND to Driver -->
+                  <line
+                    x1="148"
+                    y1="378"
+                    x2="330"
+                    y2="378"
+                    stroke="#9ca3af"
+                    stroke-width="1.3"
+                    stroke-dasharray="4 3"
+                    marker-end="url(#arr)"
+                  />
+                  <!-- GND label -->
+                  <text
+                    x="138"
+                    y="260"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="9"
+                    fill="#9ca3af"
+                    transform="rotate(-90,138,260)"
+                  >
+                    GND مشترك
+                  </text>
+
+                  <!-- OUT3 → Motor FL (سلك+) -->
+                  <line
+                    x1="190"
+                    y1="308"
+                    x2="140"
+                    y2="308"
+                    stroke="#2563eb"
+                    stroke-width="1.8"
+                  />
+                  <line
+                    x1="140"
+                    y1="308"
+                    x2="140"
+                    y2="55"
+                    stroke="#2563eb"
+                    stroke-width="1.8"
+                    marker-end="url(#arr)"
+                  />
+
+                  <!-- OUT4 → Motor RL (سلك-) -->
+                  <line
+                    x1="190"
+                    y1="328"
+                    x2="120"
+                    y2="328"
+                    stroke="#2563eb"
+                    stroke-width="1.8"
+                    stroke-dasharray="6 3"
+                  />
+                  <line
+                    x1="120"
+                    y1="328"
+                    x2="120"
+                    y2="455"
+                    stroke="#2563eb"
+                    stroke-width="1.8"
+                    stroke-dasharray="6 3"
+                    marker-end="url(#arr)"
+                  />
+
+                  <!-- OUT1 → Motor FR (سلك+) -->
+                  <line
+                    x1="450"
+                    y1="308"
+                    x2="500"
+                    y2="308"
+                    stroke="#ea580c"
+                    stroke-width="1.8"
+                  />
+                  <line
+                    x1="500"
+                    y1="308"
+                    x2="500"
+                    y2="55"
+                    stroke="#ea580c"
+                    stroke-width="1.8"
+                    marker-end="url(#arr)"
+                  />
+
+                  <!-- OUT2 → Motor RR (سلك-) -->
+                  <line
+                    x1="450"
+                    y1="328"
+                    x2="520"
+                    y2="328"
+                    stroke="#ea580c"
+                    stroke-width="1.8"
+                    stroke-dasharray="6 3"
+                  />
+                  <line
+                    x1="520"
+                    y1="328"
+                    x2="520"
+                    y2="455"
+                    stroke="#ea580c"
+                    stroke-width="1.8"
+                    stroke-dasharray="6 3"
+                    marker-end="url(#arr)"
+                  />
+
+                  <!-- Labels on side wires -->
+                  <rect
+                    x="96"
+                    y="176"
+                    width="38"
+                    height="18"
+                    rx="4"
+                    fill="white"
+                    stroke="#dbeafe"
+                    stroke-width="0.5"
+                  />
+                  <text
+                    x="115"
+                    y="188"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    font-weight="700"
+                    fill="#2563eb"
+                  >
+                    OUT3 +
+                  </text>
+
+                  <rect
+                    x="76"
+                    y="376"
+                    width="38"
+                    height="18"
+                    rx="4"
+                    fill="white"
+                    stroke="#dbeafe"
+                    stroke-width="0.5"
+                  />
+                  <text
+                    x="95"
+                    y="388"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    font-weight="700"
+                    fill="#2563eb"
+                  >
+                    OUT4 -
+                  </text>
+
+                  <rect
+                    x="506"
+                    y="176"
+                    width="38"
+                    height="18"
+                    rx="4"
+                    fill="white"
+                    stroke="#ffedd5"
+                    stroke-width="0.5"
+                  />
+                  <text
+                    x="525"
+                    y="188"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    font-weight="700"
+                    fill="#ea580c"
+                  >
+                    OUT1 +
+                  </text>
+
+                  <rect
+                    x="526"
+                    y="376"
+                    width="38"
+                    height="18"
+                    rx="4"
+                    fill="white"
+                    stroke="#ffedd5"
+                    stroke-width="0.5"
+                  />
+                  <text
+                    x="545"
+                    y="388"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    font-weight="700"
+                    fill="#ea580c"
+                  >
+                    OUT2 -
+                  </text>
+
+                  <!-- PWM label on IN wires -->
+                  <rect
+                    x="374"
+                    y="158"
+                    width="58"
+                    height="18"
+                    rx="4"
+                    fill="white"
+                    stroke="#ede9fe"
+                    stroke-width="0.5"
+                  />
+                  <text
+                    x="403"
+                    y="170"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="8.5"
+                    fill="#7c3aed"
+                  >
+                    IN / PWM
+                  </text>
+
+                  <!-- Battery + label -->
+                  <text
+                    x="318"
+                    y="420"
+                    text-anchor="middle"
+                    font-family="Cairo,sans-serif"
+                    font-size="9"
+                    font-weight="700"
+                    fill="#b45309"
+                  >
+                    +VCC
+                  </text>
+                </svg>
+              </div>
+
+              <!-- Specs -->
+              <div class="specs-panel">
+                <div class="spec-group">
+                  <div class="spec-group-head">🔌 توصيلات المحركات</div>
+                  <div class="spec-row">
+                    <span class="label">Motor FR (أمام يمين)</span
+                    ><span class="val coral">OUT1 (+)</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">Motor RR (خلف يمين)</span
+                    ><span class="val coral">OUT2 (-)</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">Motor FL (أمام يسار)</span
+                    ><span class="val blue">OUT3 (+)</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">Motor RL (خلف يسار)</span
+                    ><span class="val blue">OUT4 (-)</span>
+                  </div>
+                </div>
+
+                <div class="spec-group">
+                  <div class="spec-group-head">📡 إشارات ESP32 → Driver</div>
+                  <div class="spec-row">
+                    <span class="label">IN1 / IN2</span
+                    ><span class="val violet">اتجاه يمين</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">IN3 / IN4</span
+                    ><span class="val violet">اتجاه يسار</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">ENA</span
+                    ><span class="val rose">سرعة PWM يمين</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">ENB</span
+                    ><span class="val rose">سرعة PWM يسار</span>
+                  </div>
+                </div>
+
+                <div class="spec-group">
+                  <div class="spec-group-head">⚡ الطاقة</div>
+                  <div class="spec-row">
+                    <span class="label">Battery → Driver VCC</span
+                    ><span class="val amber">+11.1V</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">Driver → ESP32</span
+                    ><span class="val teal">5V</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">GND مشترك</span
+                    ><span
+                      class="val"
+                      style="background: #f3f4f6; color: #374151"
+                      >Battery → Driver + ESP32</span
+                    >
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">PWM Frequency</span
+                    ><span class="val teal">1000 Hz</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">Max PWM Duty</span
+                    ><span class="val teal">255</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="label">Soft Turn</span
+                    ><span class="val amber">65%</span>
+                  </div>
+                </div>
+
+                <div class="legend">
+                  <h3>المفتاح البصري</h3>
+                  <div class="legend-grid">
+                    <div class="legend-item">
+                      <div
+                        class="legend-line"
+                        style="background: #2563eb"
+                      ></div>
+                      يسار OUT3/OUT4
+                    </div>
+                    <div class="legend-item">
+                      <div
+                        class="legend-line"
+                        style="background: #ea580c"
+                      ></div>
+                      يمين OUT1/OUT2
+                    </div>
+                    <div class="legend-item">
+                      <div
+                        class="legend-line"
+                        style="background: #7c3aed"
+                      ></div>
+                      IN1–IN4 تحكم
+                    </div>
+                    <div class="legend-item">
+                      <div
+                        class="legend-line"
+                        style="
+                          background: #ea580c;
+                          height: 2px;
+                          border-radius: 0;
+                        "
+                      ></div>
+                      ENA/ENB سرعة
+                    </div>
+                    <div class="legend-item">
+                      <div
+                        class="legend-line"
+                        style="background: #f59e0b"
+                      ></div>
+                      +VCC بطارية
+                    </div>
+                    <div class="legend-item">
+                      <div
+                        class="legend-line dashed"
+                        style="
+                          color: #9ca3af;
+                          background: none;
+                          border-top: 2px dashed #9ca3af;
+                        "
+                      ></div>
+                      GND مشترك
+                    </div>
+                    <div class="legend-item">
+                      <div
+                        class="legend-line dashed"
+                        style="
+                          color: #0f766e;
+                          background: none;
+                          border-top: 2px dashed #0f766e;
+                        "
+                      ></div>
+                      5V → ESP32
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- <section class="section" id="demo">
+        <div class="container">
+          <div class="section-heading fade-up">
+            <span class="kicker">06 | Demo</span>
+            <h2>محاكاة حية لأداء المركبة (Live Demo).</h2>
+            <p class="lead">عرض تفاعلي يبرز استجابة المنظومة للأوامر وانسيابية الحركة على أرض الواقع.</p>
+          </div>
+
+          <div class="demo-layout">
+            <div class="demo-stage fade-up" aria-label="محاكاة تشغيل السيارة">
+              <div class="play-badge">
+                <span class="play-icon" aria-hidden="true"></span>
+                <span>3asal Live Run</span>
+              </div>
+              <div class="track" aria-hidden="true"></div>
+              <div class="demo-car" aria-hidden="true"></div>
+            </div>
+
+            <div class="demo-metrics fade-up">
+              <div class="metric">
+                <strong>Instant</strong>
+                <span>استجابة فورية للأوامر اللاسلكية بفضل كفاءة المعالجة.</span>
+              </div>
+              <div class="metric">
+                <strong>Smooth</strong>
+                <span>حركة ديناميكية وانعطافات سلسة دون فقدان عزم الدوران.</span>
+              </div>
+              <div class="metric">
+                <strong>Stable</strong>
+                <span>استقرار عالٍ في الطاقة والأداء التقني تحت مختلف ظروف التشغيل.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+        <section class="section alt" id="thanks">
+          <div
+            class="container"
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+              justify-content: center;
+              min-height: 50vh;
+            "
+          >
+            <div
+              class="section-heading fade-up"
+              style="align-items: center; margin-bottom: 0"
+            >
+              <span class="kicker">06 | Q&A</span>
+              <h2 style="font-size: 3.5rem; margin: 16px 0">
+                ممتنة جدا لوقتكم
+              </h2>
+              <p class="lead" style="font-size: 1.3rem">
+                هيك بنكون وصلنا للنهاية حابة اسمع رايكم او اجاوب على اي سؤال
+                ببالكم
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const animatedElements = document.querySelectorAll(".fade-up");
+      const navLinks = document.querySelectorAll(".nav-pills a");
+      const progressFill = document.querySelector(".progress-fill");
+      const sections = [...document.querySelectorAll("main .section")];
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+            }
+          });
+        },
+        { threshold: 0.18 },
+      );
+
+      animatedElements.forEach((element) => revealObserver.observe(element));
+
+      const activeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            navLinks.forEach((link) => {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === `#${entry.target.id}`,
+              );
+            });
+          });
+        },
+        { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+      );
+
+      sections.forEach((section) => activeObserver.observe(section));
+
+      function updateProgress() {
+        const scrollable =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress =
+          scrollable <= 0 ? 0 : (window.scrollY / scrollable) * 100;
+        progressFill.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      }
+
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      window.addEventListener("resize", updateProgress);
+      updateProgress();
+
+      document.addEventListener("keydown", (event) => {
+        const currentIndex = sections.findIndex((section) => {
+          const rect = section.getBoundingClientRect();
+          return (
+            rect.top <= window.innerHeight * 0.5 &&
+            rect.bottom >= window.innerHeight * 0.5
+          );
+        });
+
+        if (event.key === "ArrowDown" || event.key === "PageDown") {
+          event.preventDefault();
+          sections[
+            Math.min(sections.length - 1, currentIndex + 1)
+          ]?.scrollIntoView({ behavior: "smooth" });
+        }
+
+        if (event.key === "ArrowUp" || event.key === "PageUp") {
+          event.preventDefault();
+          sections[Math.max(0, currentIndex - 1)]?.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
