@@ -886,188 +886,31 @@
         font-weight: 600;
       }
 
+      /* ---------------------------------------------------- */
+      /* App Landscape Styles                                 */
+      /* ---------------------------------------------------- */
       .app-layout {
         display: grid;
-        grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
         align-items: center;
         gap: 54px;
       }
 
-      .app-phone {
-        width: min(390px, 100%);
+      .app-landscape {
+        width: 100%;
         margin-inline: auto;
-        padding: 16px;
-        border: 12px solid var(--ink-900);
-        border-radius: 36px;
-        background: #f8fafc;
-        box-shadow: var(--shadow);
-      }
-
-      .app-screen {
-        display: grid;
-        gap: 16px;
-        min-height: 650px;
-        padding: 18px;
+        border: 8px solid var(--ink-900);
         border-radius: 24px;
-        background: linear-gradient(180deg, #ffffff, #f1f5f9);
+        background: #000;
+        box-shadow: var(--shadow);
+        overflow: hidden;
       }
 
-      .app-status {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        color: var(--ink-500);
-        font-size: 0.78rem;
-        font-weight: 900;
-        direction: ltr;
-      }
-
-      .connection-card {
-        display: grid;
-        gap: 10px;
-        padding: 16px;
-        border-radius: var(--radius);
-        background: var(--ink-900);
-        color: #ffffff;
-      }
-
-      .connection-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      .connection-top strong {
-        font-size: 1.1rem;
-        line-height: 1.2;
-      }
-
-      .connection-pill {
-        min-width: max-content;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: rgba(22, 163, 74, 0.16);
-        color: #86efac;
-        font-size: 0.72rem;
-        font-weight: 900;
-      }
-
-      .connection-meter {
-        display: grid;
-        grid-template-columns: repeat(16, 1fr);
-        gap: 4px;
-        height: 36px;
-        align-items: end;
-        direction: ltr;
-      }
-
-      .connection-meter span {
-        height: 12px;
-        border-radius: 2px;
-        background: rgba(255, 255, 255, 0.22);
-      }
-
-      .connection-meter span:nth-child(n + 7) {
-        height: 22px;
-        background: #2dd4bf;
-      }
-
-      .connection-meter span:nth-child(n + 12) {
-        height: 30px;
-        background: #fbbf24;
-      }
-
-      .app-direction-pad {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        direction: ltr;
-      }
-
-      .app-key {
-        display: grid;
-        place-items: center;
-        aspect-ratio: 1;
-        border: 1px solid rgba(17, 24, 39, 0.08);
-        border-radius: var(--radius);
-        background: #ffffff;
-        color: var(--ink-900);
-        font-size: 1.35rem;
-        font-weight: 900;
-        box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
-      }
-
-      .app-key.empty {
-        background: transparent;
-        border-color: transparent;
-        box-shadow: none;
-      }
-
-      .app-key.primary {
-        background: var(--teal);
-        color: #ffffff;
-      }
-
-      .app-key.stop {
-        background: var(--rose);
-        color: #ffffff;
-      }
-
-      .speed-panel {
-        display: grid;
-        gap: 12px;
-        padding: 14px;
-        border-radius: var(--radius);
-        background: #ffffff;
-        border: 1px solid rgba(17, 24, 39, 0.08);
-      }
-
-      .speed-labels {
-        display: flex;
-        justify-content: space-between;
-        color: var(--ink-500);
-        font-size: 0.8rem;
-        font-weight: 900;
-      }
-
-      .slider-track {
-        position: relative;
-        height: 12px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, var(--teal) 0 72%, #e5e7eb 72% 100%);
-        direction: ltr;
-      }
-
-      .slider-track::after {
-        content: "";
-        position: absolute;
-        left: 72%;
-        top: 50%;
-        width: 24px;
-        height: 24px;
-        border: 4px solid #ffffff;
-        border-radius: 50%;
-        background: var(--teal);
-        box-shadow: 0 6px 14px rgba(15, 118, 110, 0.28);
-        transform: translate(-50%, -50%);
-      }
-
-      .app-chip-row {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-
-      .app-chip {
-        display: grid;
-        place-items: center;
-        min-height: 44px;
-        border-radius: var(--radius);
-        background: #eef2f7;
-        color: var(--ink-700);
-        font-weight: 900;
+      .app-landscape img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
       }
 
       .app-copy {
@@ -1370,8 +1213,7 @@
       }
 
       .demo-car::after {
-        content: "";
-        position: absolute;
+        content: absolute;
         left: 10px;
         top: 24px;
         width: 20px;
@@ -1586,10 +1428,6 @@
         .badges {
           justify-content: flex-start;
         }
-
-        .app-screen {
-          min-height: auto;
-        }
       }
 
       @media (max-width: 460px) {
@@ -1660,7 +1498,6 @@
             <a href="#app">التطبيق</a>
             <a href="#commands">الأوامر</a>
             <a href="#circuit">الدائرة</a>
-            <a href="#demo">التشغيل</a>
             <a href="#video">الفيديو</a>
             <a href="#thanks">الأسئلة</a>
           </nav>
@@ -1761,7 +1598,6 @@
               </div>
               <p>
 اول ما نبعت الامر من التطبيق ال  <strong>ESP32</strong> بيستقبله وبحلله بلحظتها وبعدين بيعطي اشارة مباشرة للمحركات عشان تنفذ الحركة اللي بدنا اياها بالسرعة والاتجاه المطلوب وبكل انسيابية
-
               </p>
             </div>
 
@@ -1811,7 +1647,6 @@
             <div class="section-heading fade-up">
               <span class="kicker">02 | Hardware</span>
               <h2>مكونات السيارة</h2>
-              <!-- <p class="lead">تم تصميم العتاد ليعمل كمنظومة متناغمة: استقبال البيانات، معالجتها، توزيع الطاقة، والتنفيذ الحركي.</p> -->
             </div>
 
             <div class="grid hardware-grid">
@@ -1881,75 +1716,23 @@
           </div>
         </section>
 
+        <!-- قسم التطبيق المعدل ليدعم الصورة الأفقية -->
         <section class="section alt" id="app">
           <div class="container app-layout">
-            <div class="app-phone fade-up" aria-label="واجهة تطبيق التحكم">
-              <div class="app-screen">
-                <div class="app-status">
-                  <span>9:41</span>
-                  <span>BT 100%</span>
-                </div>
-                <div class="connection-card">
-                  <div class="connection-top">
-                    <strong>3asal Control</strong>
-                    <span class="connection-pill">Connected</span>
-                  </div>
-                  <div class="connection-meter" aria-hidden="true">
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
-                  </div>
-                </div>
-                <div class="app-direction-pad">
-                  <span class="app-key empty"></span>
-                  <span class="app-key primary">F</span>
-                  <span class="app-key empty"></span>
-                  <span class="app-key">L</span>
-                  <span class="app-key stop">S</span>
-                  <span class="app-key">R</span>
-                  <span class="app-key empty"></span>
-                  <span class="app-key primary">B</span>
-                  <span class="app-key empty"></span>
-                </div>
-                <div class="speed-panel">
-                  <div class="speed-labels">
-                    <span>Speed</span>
-                    <span>72%</span>
-                  </div>
-                  <div class="slider-track" aria-hidden="true"></div>
-                </div>
-                <div class="app-chip-row">
-                  <span class="app-chip">G</span>
-                  <span class="app-chip">q</span>
-                  <span class="app-chip">X</span>
-                </div>
-              </div>
+            <div class="app-landscape fade-up" aria-label="صورة واجهة تطبيق التحكم">
+              <!-- يمكنك استبدال src باسم الصورة الخاصة بك، تم تعيينها لتكون test.jpg -->
+              <img src="test.jpg" alt="شاشة تطبيق السيارة الذكية" />
             </div>
 
             <div class="app-copy fade-up">
               <div class="section-heading">
                 <span class="kicker">03 | Mobile Application</span>
-                <h2>شكل تقريبي لواجهة تحكم في ابلكيشن</h2>
+                <h2>شكل واجهة تحكم في ابلكيشن</h2>
                 <p class="lead">
                   توفر الواجهة تحكم كامل بالمركبة مع عرض حي لحالة الاتصال
                   ومؤشرات السرعة وازرار التوجيه بدقة عالية
                 </p>
               </div>
-              <!-- <ul class="feature-list">
-              <li>
-                <span>F</span>
-                <p>أزرار التوجيه الأساسية والمائلة لضمان مناورة سلسة في جميع الاتجاهات.</p>
-              </li>
-              <li>
-                <span>q</span>
-                <p>شريط تحكم ديناميكي بالسرعة يعتمد على تعديل عرض النبضة (PWM).</p>
-              </li>
-              <li>
-                <span>S</span>
-                <p>مكابح الطوارئ (Stop) لإيقاف المحركات فوراً لضمان سلامة المنظومة.</p>
-              </li>
-            </ul> -->
             </div>
           </div>
         </section>
@@ -3163,43 +2946,7 @@
           </div>
         </section>
 
-        <!-- <section class="section" id="demo">
-        <div class="container">
-          <div class="section-heading fade-up">
-            <span class="kicker">06 | Demo</span>
-            <h2>محاكاة حية لأداء المركبة (Live Demo).</h2>
-            <p class="lead">عرض تفاعلي يبرز استجابة المنظومة للأوامر وانسيابية الحركة على أرض الواقع.</p>
-          </div>
-
-          <div class="demo-layout">
-            <div class="demo-stage fade-up" aria-label="محاكاة تشغيل السيارة">
-              <div class="play-badge">
-                <span class="play-icon" aria-hidden="true"></span>
-                <span>3asal Live Run</span>
-              </div>
-              <div class="track" aria-hidden="true"></div>
-              <div class="demo-car" aria-hidden="true"></div>
-            </div>
-
-            <div class="demo-metrics fade-up">
-              <div class="metric">
-                <strong>Instant</strong>
-                <span>استجابة فورية للأوامر اللاسلكية بفضل كفاءة المعالجة.</span>
-              </div>
-              <div class="metric">
-                <strong>Smooth</strong>
-                <span>حركة ديناميكية وانعطافات سلسة دون فقدان عزم الدوران.</span>
-              </div>
-              <div class="metric">
-                <strong>Stable</strong>
-                <span>استقرار عالٍ في الطاقة والأداء التقني تحت مختلف ظروف التشغيل.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
-
-<section class="section" id="video">
+        <section class="section" id="video">
           <div class="container">
             <div class="section-heading fade-up">
               <span class="kicker">06 | Video</span>
